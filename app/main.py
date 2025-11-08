@@ -1,4 +1,6 @@
 
+print("DATABASE_URL >>>", DATABASE_URL)
+
 import os
 from fastapi import FastAPI, Depends, HTTPException, Header, Request
 from fastapi.middleware.cors import CORSMiddleware
