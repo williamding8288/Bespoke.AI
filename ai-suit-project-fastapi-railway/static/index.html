@@ -1,0 +1,40 @@
+<!doctype html><title>AI Suit</title><h1>AI Suit Project</h1>
+  <section id="beta" class="cta">
+    <div class="container">
+      <div class="card" style="padding:34px;">
+        <h2>Join the Private Beta</h2>
+        <p class="muted">Leave your contact. We'll reach out with a fitting link.</p>
+        <form id="lead" style="max-width:680px;margin:10px auto 0; text-align:left;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div><label>Name</label><br><input name="full_name" required style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd"></div>
+            <div><label>Email</label><br><input name="email" type="email" required style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd"></div>
+          </div>
+          <div style="margin-top:12px;"><label>Role</label><br><input name="role" placeholder="IB / Consulting / Tech" style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd"></div>
+          <div style="margin-top:12px;"><label>Message</label><br><textarea name="message" rows="4" placeholder="Occasion, fit concerns" style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd"></textarea></div>
+          <button class="btn" type="submit" style="margin-top:14px;">Request Invite</button>
+          <span id="ok" class="muted" style="margin-left:10px;"></span>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  const form = document.getElementById('lead');
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    const res = await fetch('/api/leads', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    });
+    const ok = document.getElementById('ok');
+    if(res.ok){
+      ok.textContent = 'Thanks — you are on the list.';
+      form.reset();
+    }else{
+      const t = await res.text();
+      ok.textContent = 'Error: ' + t;
+    }
+  });
+  </script>
