@@ -4,5 +4,6 @@ psycopg[binary]==3.2.1
 python-dotenv==1.0.1
 pydantic[email]
 email-validator
-supabase==2.4.0
+supabase-py==2.4.0
+
 
