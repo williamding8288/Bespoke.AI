@@ -11,4 +11,7 @@ RUN chmod +x start.sh
 
 EXPOSE 8000
 
+ENV PORT=8000
+EXPOSE 8000
+
 CMD ["./start.sh"]
